@@ -1294,10 +1294,14 @@ body:has(> .frame.full) {
 /* ---------- Mobile para sa landing page (dapat nasa dulo ng file) ---------- */
 @media (max-width: 600px) {
     .landing h1,
-.frame.full .landing h1 { font-size: 3.8rem; text-align: center; }
+    .frame.full .landing h1 { font-size: 2.2rem; text-align: center; }
+    .landing-tagline { font-size: 1rem; text-align: center; }
+    .landing-highlight { font-size: 1.1rem; text-align: center; }
+    .landing-desc { text-align: center; font-size: 0.95rem; }
     .frame.full .frame-nav,
-    .frame.full .frame-footer { padding-left: 20px; padding-right: 20px; }
-    .frame.full .landing { padding: 32px 20px; }
+    .frame.full .frame-footer { padding-left: 16px; padding-right: 16px; }
+    .frame.full .landing { padding: 24px 16px; }
+    .landing-hero-content { text-align: center; }
     .frame-footer {
         flex-direction: column;
         align-items: center;
@@ -1948,4 +1952,118 @@ textarea:focus,
     border-color: rgba(0, 0, 0, 0.3);
     color: #111111;
     transform: translateY(-1px);
+}
+
+/* =========================================================
+   22. RESPONSIVE MEDIA QUERIES (Mobile, Tablet, Desktop)
+   Para maganda sa lahat ng screens (Cellphones, Tablets, Laptops)
+   ========================================================= */
+
+/* Tablets & Small Laptops (max-width: 992px) */
+@media (max-width: 992px) {
+    .frame-nav {
+        padding: 12px 20px;
+    }
+    .landing-hero-grid {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+    .hero-illustration {
+        max-width: 380px;
+        width: 100%;
+        height: auto;
+    }
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+/* Phones & Small Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    body.page-center,
+    body:has(> .form-box),
+    body:has(> .card),
+    body:has(> .frame) {
+        padding: 8px;
+    }
+    .container {
+        padding: 16px 12px;
+    }
+    .frame-nav {
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px 16px;
+    }
+    .frame-nav .nav-links {
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+    .frame-nav .nav-links a {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        white-space: nowrap;
+    }
+    .split {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .split .welcome {
+        display: none; /* Hide decorative column sa login kapag mobile para direct form agad */
+    }
+    .form-box {
+        padding: 24px 16px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .row, .row.two, .row.three, .bday-row {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .table-wrap, table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .service-switcher {
+        grid-template-columns: 1fr !important;
+    }
+    .hero-illustration {
+        max-width: 280px;
+    }
+}
+
+/* Extra Small Phones (max-width: 480px) */
+@media (max-width: 480px) {
+    h1, .landing h1 {
+        font-size: 1.8rem !important;
+    }
+    .brand-nav-logo {
+        height: 32px;
+    }
+    .btn, button, input[type="submit"] {
+        width: 100%;
+        padding: 12px 16px;
+    }
+    .frame-footer {
+        font-size: 0.75rem;
+        padding: 16px 12px;
+    }
 }

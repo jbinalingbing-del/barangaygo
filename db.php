@@ -1,19 +1,33 @@
 <?php
 // =====================================================
-//  db.php — BarangayGo Database Connection para sa WAMP
-//  Database: webdev2
+//  db.php — BarangayGo Database Connection (Local at Hosting)
 //  Gumagana sa parehong MySQLi ($conn) at PDO ($pdo)
 // =====================================================
 
-$dbHost = 'localhost';
-$dbUser = 'root';
-$dbPass = ''; // Default sa WAMP ay walang password
-$dbName = 'webdev2';
+// I-check kung tumatakbo sa InfinityFree hosting o sa Localhost (WAMP)
+$is_live = (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'barangaygo.gt.tc') !== false) 
+        || (isset($_SERVER['SERVER_NAME']) && strpos($_SERVER['SERVER_NAME'], 'infinityfree') !== false);
 
-// 1. MySQLi Connection ($conn) para sa mga lumang scripts
-$conn = @mysqli_connect($dbHost, $dbUser, $dbPass, $dbName, 3306);
-if (!$conn) {
-    // Subukan ang port 3308 kung naka-configure sa MariaDB/WAMP
+if ($is_live) {
+    // InfinityFree Live Hosting Credentials
+    $dbHost = 'sql307.infinityfree.com';
+    $dbUser = 'if0_43533714';
+    $dbPass = 'o2vlukWJYPYQD';
+    $dbName = 'if0_43533714_baranbarangaygo';
+    $dbPort = 3306;
+} else {
+    // WAMP / Localhost Credentials
+    $dbHost = 'localhost';
+    $dbUser = 'root';
+    $dbPass = '';
+    $dbName = 'webdev2';
+    $dbPort = 3306;
+}
+
+// 1. MySQLi Connection ($conn)
+$conn = @mysqli_connect($dbHost, $dbUser, $dbPass, $dbName, $dbPort);
+if (!$conn && !$is_live) {
+    // Subukan ang port 3308 kung local WAMP MariaDB
     $conn = @mysqli_connect($dbHost, $dbUser, $dbPass, $dbName, 3308);
 }
 
@@ -21,11 +35,11 @@ if ($conn) {
     mysqli_set_charset($conn, "utf8mb4");
 }
 
-// 2. PDO Connection ($pdo) para sa mga bagong scripts
+// 2. PDO Connection ($pdo)
 $pdo = null;
 try {
     $pdo = new PDO(
-        "mysql:host=$dbHost;port=3306;dbname=$dbName;charset=utf8mb4",
+        "mysql:host=$dbHost;port=$dbPort;dbname=$dbName;charset=utf8mb4",
         $dbUser,
         $dbPass,
         [
@@ -35,19 +49,23 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    try {
-        $pdo = new PDO(
-            "mysql:host=$dbHost;port=3308;dbname=$dbName;charset=utf8mb4",
-            $dbUser,
-            $dbPass,
-            [
-                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES   => false,
-            ]
-        );
-    } catch (PDOException $e2) {
-        error_log("Database connection error: " . $e2->getMessage());
+    if (!$is_live) {
+        try {
+            $pdo = new PDO(
+                "mysql:host=$dbHost;port=3308;dbname=$dbName;charset=utf8mb4",
+                $dbUser,
+                $dbPass,
+                [
+                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES   => false,
+                ]
+            );
+        } catch (PDOException $e2) {
+            error_log("Database connection error: " . $e2->getMessage());
+        }
+    } else {
+        error_log("Database connection error: " . $e->getMessage());
     }
 }
 
