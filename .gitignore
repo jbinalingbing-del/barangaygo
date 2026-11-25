@@ -3,5 +3,6 @@ uploads/*
 !uploads/.gitkeep
 mail_helper.php
 *.log
+*.sql
 .DS_Store
 Thumbs.db
