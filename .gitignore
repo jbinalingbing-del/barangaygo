@@ -1,0 +1,7 @@
+# Huwag i-push ang mga pribadong uploads at Gmail credentials
+uploads/*
+!uploads/.gitkeep
+mail_helper.php
+*.log
+.DS_Store
+Thumbs.db
