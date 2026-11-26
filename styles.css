@@ -1125,7 +1125,93 @@ body:has(> .frame.full) {
     color: var(--text);
 }
 
-/* Service switcher buttons sa itaas ng bawat request form */
+/* =========================================================
+   Modern Breadcrumbs Navigation Bar
+   Katulad ng pinakita sa screenshot: White bar na may menu icon,
+   clean separators (>), at responsive overflow
+   ========================================================= */
+.breadcrumb-bar {
+    width: 100%;
+    margin-bottom: 24px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.breadcrumb-container {
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    gap: 14px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.breadcrumb-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-soft);
+    padding: 6px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.breadcrumb-icon:hover {
+    color: var(--accent);
+    background: rgba(109, 77, 242, 0.08);
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.breadcrumb-item a {
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    font-weight: 500;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active span {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.breadcrumb-muted {
+    color: var(--text-soft);
+}
+
+.breadcrumb-separator {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 10px;
+    color: #a1a1aa;
+    font-size: 1.1rem;
+    user-select: none;
+}
+
+/* Service switcher buttons sa itaas ng bawat request form (fallback kung kailangan) */
 .service-switcher {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
