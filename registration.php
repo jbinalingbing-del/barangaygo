@@ -157,7 +157,7 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration - BarangayGo</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=<?= @filemtime(__DIR__ . '/styles.css') ?: 3; ?>">
 
     <!-- ========================================================
          [reCAPTCHA LOCATION 2]: Google reCAPTCHA API Script
@@ -370,7 +370,7 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     border-bottom: 1px solid var(--border);
     text-align: left;
 }
-/* Placeholder para sa date input sa mobile browsers na walang default mm/dd/yyyy */
+/* Placeholder para sa Birthday date input sa lahat ng devices (Computer, Laptop, Tablet, Phone) */
 .bday-input-wrap {
     position: relative;
     width: 100%;
@@ -385,10 +385,17 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     font-size: 0.9rem;
     pointer-events: none;
 }
-@media (hover: none), (max-width: 768px) {
-    .bday-input-wrap.is-empty .bday-mobile-placeholder {
-        display: block;
-    }
+.bday-input-wrap.is-empty .bday-mobile-placeholder {
+    display: block;
+}
+.bday-input-wrap.is-empty input[type="date"]:focus + .bday-mobile-placeholder {
+    display: none;
+}
+.bday-input-wrap.is-empty input[type="date"]::-webkit-datetime-edit {
+    color: transparent;
+}
+.bday-input-wrap input[type="date"]:focus::-webkit-datetime-edit {
+    color: inherit;
 }
 </style></head>
 <body>
