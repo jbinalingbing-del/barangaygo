@@ -21,6 +21,11 @@ $current_service_name = $service_names[$active_service] ?? 'Document Request';
     <div class="breadcrumb-container">
                 <ol class="breadcrumb-list">
             <li class="breadcrumb-item">
+                <a href="dashboard.php">Dashboard</a>
+            </li>
+            <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+
+            <li class="breadcrumb-item">
                 <a href="services.php">Services</a>
             </li>
             <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
