@@ -18,13 +18,24 @@ function save_upload(string $field_name, string $label, bool $required = false):
     $file = $_FILES[$field_name];
 
     if ($file["error"] !== UPLOAD_ERR_OK) {
-        $msg = match ($file["error"]) {
-            UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => "$label is too large. It exceeds the server upload limit. Please upload a smaller file.",
-            UPLOAD_ERR_PARTIAL   => "Upload for $label was interrupted. Please try again.",
-            UPLOAD_ERR_NO_TMP_DIR=> "Missing temporary folder for $label on the server.",
-            UPLOAD_ERR_CANT_WRITE=> "Failed to write $label to disk.",
-            default              => "Upload error for $label (Error code: " . $file["error"] . ")."
-        };
+        switch ($file["error"]) {
+            case UPLOAD_ERR_INI_SIZE:
+            case UPLOAD_ERR_FORM_SIZE:
+                $msg = "$label is too large. It exceeds the server upload limit. Please upload a smaller file.";
+                break;
+            case UPLOAD_ERR_PARTIAL:
+                $msg = "Upload for $label was interrupted. Please try again.";
+                break;
+            case UPLOAD_ERR_NO_TMP_DIR:
+                $msg = "Missing temporary folder for $label on the server.";
+                break;
+            case UPLOAD_ERR_CANT_WRITE:
+                $msg = "Failed to write $label to disk.";
+                break;
+            default:
+                $msg = "Upload error for $label (Error code: " . $file["error"] . ").";
+                break;
+        }
         return [false, $msg];
     }
 
@@ -42,12 +53,20 @@ function save_upload(string $field_name, string $label, bool $required = false):
         return [false, "Only JPG, PNG, or WebP files are accepted for $label."];
     }
 
-    $ext = match ($mime) {
-        "image/jpeg" => "jpg",
-        "image/png"  => "png",
-        "image/webp" => "webp",
-        default      => "jpg"
-    };
+    switch ($mime) {
+        case "image/jpeg":
+            $ext = "jpg";
+            break;
+        case "image/png":
+            $ext = "png";
+            break;
+        case "image/webp":
+            $ext = "webp";
+            break;
+        default:
+            $ext = "jpg";
+            break;
+    }
 
     $upload_dir = __DIR__ . DIRECTORY_SEPARATOR . "uploads";
     if (!is_dir($upload_dir)) {
