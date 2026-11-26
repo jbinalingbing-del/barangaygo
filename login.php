@@ -105,7 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="frame full">
     <!-- Navigation Bar sa itaas -->
     <nav class="frame-nav">
-        <a href="index.php" class="brand">BarangayGo</a>
+        <a href="index.php" class="brand">
+            <img src="assets/community-connect-logo.png" alt="BarangayGo Logo" class="brand-nav-logo">
+            <span>BarangayGo</span>
+        </a>
         <div class="nav-links">
             <a href="login.php" class="active">Login</a>
             <a href="registration.php">Register</a>
@@ -130,6 +133,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Kanang bahagi: Login Form -->
             <form action="login.php" method="post" class="login-container" id="loginForm" novalidate>
+                <!-- Mobile only Hero Banner na may Logo para kitang-kita sa phone -->
+                <div class="mobile-login-hero">
+                    <img src="assets/barangaygo-hero.png" alt="BarangayGo Logo">
+                    <small>WELCOME TO</small>
+                    <h2>BARANGAYGO</h2>
+                </div>
+
                 <p class="sub-outside">Start Using BARANGAYGO Services Today</p>
 
                 <div class="form-box">

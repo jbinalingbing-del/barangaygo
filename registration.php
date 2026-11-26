@@ -402,7 +402,10 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
 
 <div class="frame full">
     <nav class="frame-nav">
-        <a href="index.php" class="brand">BarangayGo</a>
+        <a href="index.php" class="brand">
+            <img src="assets/community-connect-logo.png" alt="BarangayGo Logo" class="brand-nav-logo">
+            <span>BarangayGo</span>
+        </a>
         <div class="nav-links">
             <a href="login.php">Login</a>
             <a href="registration.php" class="active">Register</a>
