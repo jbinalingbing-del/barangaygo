@@ -370,6 +370,26 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     border-bottom: 1px solid var(--border);
     text-align: left;
 }
+/* Placeholder para sa date input sa mobile browsers na walang default mm/dd/yyyy */
+.bday-input-wrap {
+    position: relative;
+    width: 100%;
+}
+.bday-mobile-placeholder {
+    display: none;
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--placeholder, #a1a1aa);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+@media (hover: none), (max-width: 768px) {
+    .bday-input-wrap.is-empty .bday-mobile-placeholder {
+        display: block;
+    }
+}
 </style></head>
 <body>
 
@@ -488,9 +508,12 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
                                 <?php endfor; ?>
                             </select>
                             <!-- Visible birthday picker (date input) -->
-                            <input type="date" id="birthday_display" name="birthday_display"
-                                   value="<?= ($v_yr && $v_mo && $v_dy) ? "$v_yr-$v_mo-$v_dy" : '' ?>"
-                                   max="<?= date('Y-m-d') ?>" required>
+                            <div class="bday-input-wrap<?= ($v_yr && $v_mo && $v_dy) ? '' : ' is-empty' ?>" id="bday_wrap">
+                                <input type="date" id="birthday_display" name="birthday_display"
+                                       value="<?= ($v_yr && $v_mo && $v_dy) ? "$v_yr-$v_mo-$v_dy" : '' ?>"
+                                       max="<?= date('Y-m-d') ?>" required>
+                                <span class="bday-mobile-placeholder">mm/dd/yyyy</span>
+                            </div>
                             <span class="field-error" id="err-year"></span>
                             <span class="field-error" id="err-month" style="display:none;"></span>
                             <span class="field-error" id="err-day" style="display:none;"></span>
@@ -852,10 +875,24 @@ function validateBirthdayAge() {
     return true;
 }
 
-// Birthday display input validation on change (18+ required)
+// Birthday display input validation on change (18+ required) at mobile placeholder toggle
 const bdayField = document.getElementById('birthday_display');
+const bdayWrap = document.getElementById('bday_wrap');
+function syncBdayPlaceholder() {
+    if (!bdayField || !bdayWrap) return;
+    if (bdayField.value) {
+        bdayWrap.classList.remove('is-empty');
+    } else {
+        bdayWrap.classList.add('is-empty');
+    }
+}
 if (bdayField) {
-    bdayField.addEventListener('change', validateBirthdayAge);
+    syncBdayPlaceholder();
+    bdayField.addEventListener('input', syncBdayPlaceholder);
+    bdayField.addEventListener('change', function() {
+        syncBdayPlaceholder();
+        validateBirthdayAge();
+    });
 }
 
 // Sex & Civil Status selects
