@@ -19,28 +19,9 @@ $current_service_name = $service_names[$active_service] ?? 'Document Request';
 <!-- Modern Breadcrumbs Bar -->
 <nav class="breadcrumb-bar" aria-label="Breadcrumb">
     <div class="breadcrumb-container">
-        <!-- Home / Menu Icon -->
-        <a href="dashboard.php" class="breadcrumb-icon" title="Dashboard">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-        </a>
-
-        <ol class="breadcrumb-list">
-            <li class="breadcrumb-item">
-                <a href="dashboard.php">Home</a>
-            </li>
-            <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
-            
+                <ol class="breadcrumb-list">
             <li class="breadcrumb-item">
                 <a href="services.php">Services</a>
-            </li>
-            <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
-            
-            <li class="breadcrumb-item">
-                <span class="breadcrumb-muted">Request</span>
             </li>
             <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
 
