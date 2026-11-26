@@ -133,13 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Kanang bahagi: Login Form -->
             <form action="login.php" method="post" class="login-container" id="loginForm" novalidate>
-                <!-- Mobile only Hero Banner na may Logo para kitang-kita sa phone -->
-                <div class="mobile-login-hero">
-                    <img src="assets/barangaygo-hero.png" alt="BarangayGo Logo">
-                    <small>WELCOME TO</small>
-                    <h2>BARANGAYGO</h2>
-                </div>
-
                 <p class="sub-outside">Start Using BARANGAYGO Services Today</p>
 
                 <div class="form-box">

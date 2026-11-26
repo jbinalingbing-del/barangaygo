@@ -2045,8 +2045,6 @@ textarea:focus,
    Para maganda sa lahat ng screens (Cellphones, Tablets, Laptops)
    ========================================================= */
 
-.mobile-login-hero { display: none; }
-
 /* Tablets & Small Laptops (max-width: 992px) */
 @media (max-width: 992px) {
     .frame-nav {
@@ -2107,34 +2105,33 @@ textarea:focus,
         gap: 20px;
     }
     .split .welcome {
-        display: none; /* Hide decorative left column sa login kapag mobile */
-    }
-    .mobile-login-hero {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        margin-bottom: 18px;
+        width: 100%;
+        margin-bottom: 24px;
     }
-    .mobile-login-hero img {
-        height: 65px;
-        width: auto;
+    .split .welcome .welcome-top-logo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    .split .welcome .welcome-logo-img {
+        max-width: 220px;
+        width: 100%;
+        height: auto;
         object-fit: contain;
-        margin-bottom: 8px;
-        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
     }
-    .mobile-login-hero small {
-        font-size: 0.72rem;
-        font-weight: 700;
+    .split .welcome small {
+        font-size: 0.8rem;
         letter-spacing: 0.08em;
-        color: var(--text-soft);
     }
-    .mobile-login-hero h2 {
-        font-size: 1.4rem;
-        font-weight: 800;
-        letter-spacing: 0.02em;
-        color: var(--text);
-        margin: 2px 0 0;
+    .split .welcome h2 {
+        font-size: 2rem !important;
+        line-height: 1.1;
+        margin-top: 4px;
     }
     .form-box {
         padding: 24px 16px !important;
