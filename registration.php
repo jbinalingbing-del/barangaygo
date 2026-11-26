@@ -346,6 +346,10 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
 .reg-wide .row.two {
     gap: 0 18px;
 }
+.reg-wide .row.three {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 18px;
+}
 .reg-wide .field {
     max-width: none;
     width: 100%;
@@ -434,8 +438,8 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
                         </div>
                     </div>
 
-                    <!-- Row 3: Sex / Gender + Civil Status -->
-                    <div class="row two">
+                    <!-- Row 3: Gender + Civil Status + Birthday (3 columns, magkatabi at mas compact) -->
+                    <div class="row three">
                         <div class="field full-mobile">
                             <label for="sex">Gender</label>
                             <select name="sex" id="sex" class="reg-select" required>
@@ -457,42 +461,40 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
                             </select>
                             <span class="field-error" id="err-civil"></span>
                         </div>
-                    </div>
-
-                    <!-- Row 4: Birthday (full width) -->
-                    <div class="field">
-                        <label for="birthday_display">Birthday</label>
-                        <!-- Hidden selects para sa database submission -->
-                        <select name="bday_year" id="bday_year" style="display:none;">
-                            <option value="">Year</option>
-                            <?php for ($y = date("Y"); $y >= 1900; $y--): ?>
-                                <option value="<?= $y ?>" <?= $v_yr == $y ? "selected" : "" ?>><?= $y ?></option>
-                            <?php endfor; ?>
-                        </select>
-                        <select name="bday_month" id="bday_month" style="display:none;">
-                            <option value="">Month</option>
-                            <?php
-                            $months = ["01"=>"January","02"=>"February","03"=>"March","04"=>"April",
-                                       "05"=>"May","06"=>"June","07"=>"July","08"=>"August",
-                                       "09"=>"September","10"=>"October","11"=>"November","12"=>"December"];
-                            foreach ($months as $k => $m):
-                            ?>
-                                <option value="<?= $k ?>" <?= $v_mo == $k ? "selected" : "" ?>><?= $m ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <select name="bday_day" id="bday_day" style="display:none;">
-                            <option value="">Day</option>
-                            <?php for ($d = 1; $d <= 31; $d++): $dd = str_pad($d, 2, "0", STR_PAD_LEFT); ?>
-                                <option value="<?= $dd ?>" <?= $v_dy == $dd ? "selected" : "" ?>><?= $d ?></option>
-                            <?php endfor; ?>
-                        </select>
-                        <!-- Visible birthday picker (date input) -->
-                        <input type="date" id="birthday_display" name="birthday_display"
-                               value="<?= ($v_yr && $v_mo && $v_dy) ? "$v_yr-$v_mo-$v_dy" : '' ?>"
-                               max="<?= date('Y-m-d') ?>" required>
-                        <span class="field-error" id="err-year"></span>
-                        <span class="field-error" id="err-month" style="display:none;"></span>
-                        <span class="field-error" id="err-day" style="display:none;"></span>
+                        <div class="field full-mobile">
+                            <label for="birthday_display">Birthday</label>
+                            <!-- Hidden selects para sa database submission -->
+                            <select name="bday_year" id="bday_year" style="display:none;">
+                                <option value="">Year</option>
+                                <?php for ($y = date("Y"); $y >= 1900; $y--): ?>
+                                    <option value="<?= $y ?>" <?= $v_yr == $y ? "selected" : "" ?>><?= $y ?></option>
+                                <?php endfor; ?>
+                            </select>
+                            <select name="bday_month" id="bday_month" style="display:none;">
+                                <option value="">Month</option>
+                                <?php
+                                $months = ["01"=>"January","02"=>"February","03"=>"March","04"=>"April",
+                                           "05"=>"May","06"=>"June","07"=>"July","08"=>"August",
+                                           "09"=>"September","10"=>"October","11"=>"November","12"=>"December"];
+                                foreach ($months as $k => $m):
+                                ?>
+                                    <option value="<?= $k ?>" <?= $v_mo == $k ? "selected" : "" ?>><?= $m ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <select name="bday_day" id="bday_day" style="display:none;">
+                                <option value="">Day</option>
+                                <?php for ($d = 1; $d <= 31; $d++): $dd = str_pad($d, 2, "0", STR_PAD_LEFT); ?>
+                                    <option value="<?= $dd ?>" <?= $v_dy == $dd ? "selected" : "" ?>><?= $d ?></option>
+                                <?php endfor; ?>
+                            </select>
+                            <!-- Visible birthday picker (date input) -->
+                            <input type="date" id="birthday_display" name="birthday_display"
+                                   value="<?= ($v_yr && $v_mo && $v_dy) ? "$v_yr-$v_mo-$v_dy" : '' ?>"
+                                   max="<?= date('Y-m-d') ?>" required>
+                            <span class="field-error" id="err-year"></span>
+                            <span class="field-error" id="err-month" style="display:none;"></span>
+                            <span class="field-error" id="err-day" style="display:none;"></span>
+                        </div>
                     </div>
 
                     <!-- ============================================================
