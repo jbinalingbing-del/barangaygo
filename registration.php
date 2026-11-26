@@ -934,7 +934,10 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
         valid = false;
     }
     const cp = document.getElementById('confirm_password');
-    if (cp.value !== pw.value) {
+    if (!cp.value) {
+        markError(cp, 'err-confirm', 'Please confirm your password.');
+        valid = false;
+    } else if (cp.value !== pw.value) {
         markError(cp, 'err-confirm', 'Passwords do not match.');
         valid = false;
     }
