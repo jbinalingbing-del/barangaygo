@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login Page - BarangayGo</title>
     
     <!-- Link sa pangkalahatang stylesheet ng website -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=<?= @filemtime(__DIR__ . '/styles.css') ?: 4; ?>">
 
     <!-- ======================================================================= -->
     <!-- [KULAY AT STYLES] DITO NAKA-DESIGN ANG MGA KULAY NG BACKGROUND AT KAHON -->
