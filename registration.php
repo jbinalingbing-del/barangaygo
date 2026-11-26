@@ -332,13 +332,16 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     margin-top: 3px;
     line-height: 1;
 }
-/* Malawak na registration layout katulad ng profile page */
+/* Malawak na registration layout — full screen width */
+.request.reg-wide,
 .reg-wide {
     width: 100%;
-    max-width: 1060px;
+    max-width: none;
 }
 .reg-wide .form-box {
-    padding: 34px 40px;
+    width: 100%;
+    max-width: none;
+    padding: 36px 48px;
 }
 .reg-wide .row.two {
     gap: 0 18px;
