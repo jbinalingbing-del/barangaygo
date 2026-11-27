@@ -332,73 +332,62 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     margin-top: 3px;
     line-height: 1;
 }
-/* COMMENT: Full Screen Registration layout — Inalis ang lumulutang na kahon (card border at shadow) para maging totoong full screen edge-to-edge ang buong page */
-body,
-.frame.full,
-.reg-page-main,
-.page-main.top.reg-page-main {
-    background: #ffffff !important;
-}
-.reg-page-main,
-.page-main.top.reg-page-main {
-    padding: 24px 48px 60px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    align-items: stretch !important;
-}
-.page-main.top > .request.reg-wide,
-.request.reg-wide,
-.reg-wide {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    align-self: stretch !important;
-}
-/* Inalis ang kahon/card styling: walang border, walang shadow, walang background para sakop ang buong screen */
-.reg-wide .form-box,
-.frame.full .request.reg-wide .form-box {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border: none !important;
+/* COMMENT: Layout katulad ng Profile page — malawak (1240px max-width), walang lumulutang na kahon/card, malinis at full-width */
+.page-main.top > .profile-card {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0;
+    background: transparent;
+    border: none;
     box-shadow: none !important;
-    border-radius: 0 !important;
-    box-sizing: border-box;
 }
-@media (max-width: 768px) {
-    .reg-page-main,
-    .page-main.top.reg-page-main {
-        padding: 16px 16px 36px !important;
-    }
+.profile-card .form-section-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--focus);
+    margin: 28px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
 }
-.reg-wide .row.two {
-    gap: 0 18px;
+.profile-card .form-section-title:first-child {
+    margin-top: 8px;
 }
-.reg-wide .row.three {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0 18px;
-}
-.reg-wide .field {
+.profile-card .field {
     max-width: none;
     width: 100%;
     margin: 0 0 14px;
 }
-.reg-wide .field input,
-.reg-wide .field select {
+.profile-card .field label {
+    font-size: 0.78rem;
+    margin-bottom: 4px;
+    color: var(--label);
+    font-weight: 600;
+    display: block;
+}
+.profile-card .field input,
+.profile-card .field select {
     width: 100%;
+    height: 40px;
     box-sizing: border-box;
 }
-.reg-wide .form-section {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--focus);
-    margin: 22px 0 14px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--border);
-    text-align: left;
+.profile-card .row.two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 18px;
+}
+.profile-card .row.three {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 18px;
+}
+@media (max-width: 768px) {
+    .profile-card .row.two,
+    .profile-card .row.three {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }
 /* Placeholder para sa Birthday date input sa lahat ng devices (Computer, Laptop, Tablet, Phone) */
 .bday-input-wrap {
@@ -443,24 +432,28 @@ body,
         </div>
     </nav>
 
-    <main class="page-main top reg-page-main">
+    <main class="page-main top">
         <a href="login.php" class="back-link">&larr; Back</a>
-        <div class="request reg-wide">
-            <div class="form-box left">
-                <h1>REGISTRATION</h1>
+        <div class="profile-card" style="font-family: 'Verdana', Geneva, Tahoma, sans-serif;">
+            <div class="profile-header">
+                <div>
+                    <h1 style="font-family: 'Verdana', Geneva, Tahoma, sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em;">REGISTRATION</h1>
+                    <p class="sub">Fill out the form below to create your BarangayGo resident account.</p>
+                </div>
+            </div>
 
-                <?php if ($message != ""): ?>
-                    <p class="message" role="alert"><?= htmlspecialchars($message, ENT_QUOTES); ?></p>
-                <?php endif; ?>
+            <?php if ($message != ""): ?>
+                <p class="message" role="alert"><?= htmlspecialchars($message, ENT_QUOTES); ?></p>
+            <?php endif; ?>
 
-                <form method="POST" action="" id="regForm" novalidate>
+            <form method="POST" action="" id="regForm" novalidate style="margin-top: 18px;">
 
                     <!-- ============================================================
                          SECTION 1: PERSONAL INFORMATION
                          Layout: 2-column grid (Title + First Name, Middle + Last Name,
                          Sex/Gender + Civil Status, Birthday + Age)
                          ============================================================ -->
-                    <div class="form-section">PERSONAL INFORMATION</div>
+                    <div class="form-section-title">Personal Information</div>
 
                     <!-- Row 1: Title (Salutation) + First Name -->
                     <div class="row two">
@@ -564,7 +557,7 @@ body,
                          SECTION 2: CONTACT & ACCOUNT DETAILS
                          Layout: 2-column (Phone + Email)
                          ============================================================ -->
-                    <div class="form-section">CONTACT &amp; ACCOUNT DETAILS</div>
+                    <div class="form-section-title">Contact &amp; Account Details</div>
 
                     <!-- Row: Phone/Mobile + Email -->
                     <div class="row two">
@@ -628,7 +621,7 @@ body,
                          SECTION 3: RESIDENTIAL ADDRESS
                          Layout: Street full-width, then 2-column grid
                          ============================================================ -->
-                    <div class="form-section">RESIDENTIAL ADDRESS</div>
+                    <div class="form-section-title">Residential Address</div>
 
                     <!-- Street: full width -->
                     <div class="field">
@@ -736,13 +729,12 @@ body,
                         <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback="onRecaptchaSuccess" id="recaptcha"></div>
                         <span class="field-error" id="err-robot" style="margin-top: 6px;"></span>
                     </div>
-                    <div class="actions" style="margin-top:20px;text-align:center;">
-                        <button type="submit">REGISTER</button>
+                    <div class="actions" style="margin-top:24px;text-align:center;">
+                        <button type="submit" class="btn" style="min-width: 200px; height: 44px; font-weight: 700; font-family: 'Verdana', Geneva, Tahoma, sans-serif; font-size: 0.95rem;">REGISTER</button>
                     </div>
 
                 </form>
-            </div>
-        </div>
+        </div><!-- end profile-card -->
     </main>
 
 </div>
