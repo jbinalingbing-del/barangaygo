@@ -332,10 +332,16 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     margin-top: 3px;
     line-height: 1;
 }
-/* COMMENT: Malawak na registration layout — totoong full screen width sa desktop at responsive sa mobile/tablet */
+/* COMMENT: Full Screen Registration layout — Inalis ang lumulutang na kahon (card border at shadow) para maging totoong full screen edge-to-edge ang buong page */
+body,
+.frame.full,
 .reg-page-main,
 .page-main.top.reg-page-main {
-    padding: 24px 28px 48px !important;
+    background: #ffffff !important;
+}
+.reg-page-main,
+.page-main.top.reg-page-main {
+    padding: 24px 48px 60px !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
@@ -349,21 +355,22 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     margin: 0 !important;
     align-self: stretch !important;
 }
+/* Inalis ang kahon/card styling: walang border, walang shadow, walang background para sakop ang buong screen */
 .reg-wide .form-box,
 .frame.full .request.reg-wide .form-box {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 40px 48px;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
     box-sizing: border-box;
 }
 @media (max-width: 768px) {
     .reg-page-main,
     .page-main.top.reg-page-main {
-        padding: 16px 12px 32px !important;
-    }
-    .reg-wide .form-box,
-    .frame.full .request.reg-wide .form-box {
-        padding: 24px 16px !important;
+        padding: 16px 16px 36px !important;
     }
 }
 .reg-wide .row.two {
