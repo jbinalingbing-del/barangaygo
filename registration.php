@@ -332,16 +332,39 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
     margin-top: 3px;
     line-height: 1;
 }
-/* Malawak na registration layout — full screen width */
+/* COMMENT: Malawak na registration layout — totoong full screen width sa desktop at responsive sa mobile/tablet */
+.reg-page-main,
+.page-main.top.reg-page-main {
+    padding: 24px 28px 48px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    align-items: stretch !important;
+}
+.page-main.top > .request.reg-wide,
 .request.reg-wide,
 .reg-wide {
-    width: 100%;
-    max-width: none;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    align-self: stretch !important;
 }
-.reg-wide .form-box {
-    width: 100%;
-    max-width: none;
-    padding: 36px 48px;
+.reg-wide .form-box,
+.frame.full .request.reg-wide .form-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 40px 48px;
+    box-sizing: border-box;
+}
+@media (max-width: 768px) {
+    .reg-page-main,
+    .page-main.top.reg-page-main {
+        padding: 16px 12px 32px !important;
+    }
+    .reg-wide .form-box,
+    .frame.full .request.reg-wide .form-box {
+        padding: 24px 16px !important;
+    }
 }
 .reg-wide .row.two {
     gap: 0 18px;
@@ -413,7 +436,7 @@ $v_email  = htmlspecialchars($_POST["email"]    ?? "", ENT_QUOTES);
         </div>
     </nav>
 
-    <main class="page-main top">
+    <main class="page-main top reg-page-main">
         <a href="login.php" class="back-link">&larr; Back</a>
         <div class="request reg-wide">
             <div class="form-box left">
