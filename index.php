@@ -1,4 +1,11 @@
 <?php
+// =============================================================================
+// index.php - BarangayGo Landing Page / Home Page
+// =============================================================================
+// Tungkulin:
+// - Pangunahing pahina ng BarangayGo portal para sa mga bisita.
+// - Nagpapakita ng welcome hero banner, maikling paliwanag, at "Get Started" link papuntang registration.
+// =============================================================================
 session_start();
 ?>
 <!DOCTYPE html>
@@ -10,11 +17,13 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Naka-cache buster ang CSS para laging updated sa browser -->
+    <link rel="stylesheet" href="styles.css?v=<?= time(); ?>">
 </head>
 <body>
 
 <div class="frame full">
+    <!-- Pang-itaas na Navigation Bar na may logo -->
     <nav class="frame-nav">
         <a href="index.php" class="brand">
             <img src="assets/community-connect-logo.png" alt="BarangayGo Community Connect" class="brand-nav-logo">
@@ -27,6 +36,7 @@ session_start();
         </div>
     </nav>
 
+    <!-- Pangunahing nilalaman: Hero grid na responsive (desktop, tablet, cellphone) -->
     <main class="landing">
         <div class="landing-hero-grid">
             <div class="landing-hero-content">
@@ -43,6 +53,7 @@ session_start();
         </div>
     </main>
 
+    <!-- Footer sa ibaba -->
     <footer class="frame-footer">
         <span>BarangayGo &copy; <?= date("Y"); ?></span>
     </footer>
