@@ -2062,6 +2062,45 @@ textarea:focus,
         width: 100%;
         height: auto;
     }
+    .split {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        justify-items: center;
+    }
+    .split .welcome {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 0;
+    }
+    .split .welcome .welcome-top-logo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    .split .welcome .welcome-logo-img {
+        max-width: 260px;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    .split .welcome small {
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+    }
+    .split .welcome h2 {
+        font-size: 2.8rem !important;
+        line-height: 1.1;
+        margin-top: 4px;
+    }
+    .login-container {
+        width: 100%;
+        max-width: 440px;
+        margin: 0 auto;
+    }
     .service-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
